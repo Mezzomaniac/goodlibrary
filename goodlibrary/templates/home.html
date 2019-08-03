@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome to GoodLibrary</h1>
+<h3>GoodLibrary lets you search your local library catalog for all the books on a Goodreads shelf at once.</h3>
+<hr>
+<div id="intro">
+    <p id="creator">
+        Created 2019 by Jeremy Thomas London
+    </p>
+    <address>
+        Please report any bugs to <a href="mailto:jeremylondon@outlook.com.au?subject=GoodLibrary">jeremylondon@outlook.com.au</a>
+    </address>
+    <p id="changelog"></p>
+</div>
+<hr>
+<div id="steps">
+    <p>Step 1: Download a Goodreads shelf by exporting it as a .csv file</p>
+    <form id="listsearch" action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.file.label }}<br>
+        {{ form.file() }}<br>
+        {% for error in form.file.errors %}
+            <span style="color: red;">{{ error }}</span>
+        {% endfor %}<br>
+        {{ form.libraries.label }}<br>
+        {{ form.libraries() }}
+        <a href="mailto:jeremylondon@outlook.com.au?subject=GoodLibrary%20library%20request">Don't see your preferred library listed? Click here to send an email request to add it!</a><br>
+        {% for error in form.libraries.errors %}
+            <span style="color: red;">{{ error }}</span>
+        {% endfor %}<br>
+        Step 4: Search!<br>
+        {{ form.submit() }}
+    </form>
+</div>
+{% endblock %}
